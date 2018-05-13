@@ -1,0 +1,17 @@
+# Each agent identity.config file should be in the configs
+# directory and will be used to install the agent.
+listener:
+  source: examples/ListenerAgent
+  config: listener.config
+
+historian:
+  source: services/core/SQLHistorian
+  config: historian.config
+
+# weather:
+#   source: examples/DataPublisher
+#   config: weather.config
+
+price:
+  source: examples/DataPublisher
+  config: price.config
