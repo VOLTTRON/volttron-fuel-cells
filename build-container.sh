@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t volttron/fuel-cells .
+docker build --network=host -t volttron/fuel-cells .
