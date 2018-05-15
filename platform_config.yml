@@ -21,17 +21,17 @@ agents:
   platform.actuator:
     source: $VOLTTRON_ROOT/services/core/ActuatorAgent
 
-  # historian:
-  #   source: $VOLTTRON_ROOT/services/core/SQLHistorian
-  #   config: historian.config
+  historian:
+    source: $VOLTTRON_ROOT/services/core/SQLHistorian
+    config: historian.config
 
-  # weather:
-  #   source: $VOLTTRON_ROOT/examples/DataPublisher
-  #   config: weather.config
+  weather:
+    source: $VOLTTRON_ROOT/examples/DataPublisher
+    config: weather.config
 
-  # price:
-  #   source: $VOLTTRON_ROOT/examples/DataPublisher
-  #   config: price.config
+  price:
+    source: $VOLTTRON_ROOT/examples/DataPublisher
+    config: price.config
 
   platform.driver:
     source: $VOLTTRON_ROOT/services/core/MasterDriverAgent

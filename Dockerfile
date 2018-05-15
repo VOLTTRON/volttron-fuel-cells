@@ -1,4 +1,4 @@
-FROM volttron
+FROM volttron/volttron
 # /volttron
 
 RUN pwd
