@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-source env/bin/activate
+source ${VOLTTRON_ROOT}/env/bin/activate
 
 python setup-platform.py
 PID=$?
