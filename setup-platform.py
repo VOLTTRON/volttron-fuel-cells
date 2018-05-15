@@ -17,22 +17,30 @@ KEYSTORES = os.path.join(VOLTTRON_HOME, "keystores")
 with open("platform_config.yml") as cin:
     config = yaml.safe_load(cin)
     agents = config['agents']
+    platform_cfg = config['config']
 
 need_to_install = {}
-for identity, specs in agents.items():
-    path_to_keystore = os.path.join(KEYSTORES, identity)
-    if not os.path.exists(path_to_keystore):
-        need_to_install[identity] = specs
+
+# TODO Fix so that the agents identities are consulted.
+if not os.path.exists("{}/agents".format(VOLTTRON_HOME)):
+    for identity, specs in agents.items():
+        path_to_keystore = os.path.join(KEYSTORES, identity)
+        if not os.path.exists(path_to_keystore):
+            need_to_install[identity] = specs
 
 # if we need to do installs then we haven't setup this at all.
 if need_to_install:
     assert os.path.exists(VOLTTRON_PATH)
     proc = subprocess.Popen([VOLTTRON_PATH, "-vv"])
     assert proc is not None
-    sleep(5)
-    with open(os.path.join(VOLTTRON_HOME, "config"), "w") as fout:
-        fout.write("[volttron]\n")
-        fout.write("vip-address=tcp://0.0.0.0:22916\n")
+    sleep(2)
+    cfg_path = os.path.join(VOLTTRON_HOME, "config")
+    if not os.path.exists(cfg_path):
+        if len(platform_cfg) > 0:
+            with open(os.path.join(cfg_path), "w") as fout:
+                fout.write("[volttron]\n")
+                for key, value in platform_cfg.items():
+                    fout.write("{}={}\n".format(key.strip(), value.strip()))
 
     config_dir = os.path.join("configs")
     for identity, spec in need_to_install.items():
@@ -47,6 +55,7 @@ if need_to_install:
         install_cmd.extend(["--vip-identity", identity])
         install_cmd.extend(["--start", "--priority", "50"])
         install_cmd.extend(["--agent-start-time", "2"])
+        install_cmd.append('--force')
         if agent_cfg:
             install_cmd.extend(["--config", agent_cfg])
 
