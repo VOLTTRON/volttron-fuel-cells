@@ -18,14 +18,27 @@ agents:
     source: $VOLTTRON_ROOT/examples/ListenerAgent
     config: listener.config
 
-  historian:
-    source: $VOLTTRON_ROOT/services/core/SQLHistorian
-    config: historian.config
+  platform.actuator:
+    source: $VOLTTRON_ROOT/services/core/ActuatorAgent
+
+  # historian:
+  #   source: $VOLTTRON_ROOT/services/core/SQLHistorian
+  #   config: historian.config
 
   # weather:
-  #   source: examples/DataPublisher
+  #   source: $VOLTTRON_ROOT/examples/DataPublisher
   #   config: weather.config
 
-  price:
-    source: $VOLTTRON_ROOT/examples/DataPublisher
-    config: price.config
+  # price:
+  #   source: $VOLTTRON_ROOT/examples/DataPublisher
+  #   config: price.config
+
+  platform.driver:
+    source: $VOLTTRON_ROOT/services/core/MasterDriverAgent
+    config_store:
+      fake.csv:
+        file: $VOLTTRON_ROOT/examples/configurations/drivers/fake.csv
+        type: --csv
+      devices/fake-campus/fake-building/fake-device:
+        file: $VOLTTRON_ROOT/examples/configurations/drivers/fake.config
+
