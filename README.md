@@ -10,6 +10,10 @@ This is a working example of how to use the volttron/volttron docker image in a 
 
 ## Platform configuration
 
+The platform_config.yml file should be copied/mounted inside the container at /platform_config.yml.  The docker-compose.yml file does this automatically in the volumes section of the volttron service.
+
+The platform_config.yml has two sections.  The first is the config and the second is the agents.  The config section is main instance configuration composed of key value pairs.  In the example below, the vip-address is specified as is the bind-web-address.  During execution time these will be put into the instances main config file (/home/volttron/.volttron/config).
+
 ```` yaml
 # Properties to be added to the root config file
 # the properties should be ingestable for volttron
@@ -20,6 +24,21 @@ config:
   bind-web-address: http://0.0.0.0:8080
   # volttron-central-address: a different address
   # volttron-central-serverkey: a different key
+
+  ...
+````
+
+The second section of the platform_config.yml file is the agents.  Each agent
+
+- MUST contain a source entry
+- MAY contain a config entry
+- MAY contain a config_store entry.
+
+Examples of these are in the examples.  Note the use of environment variables.  The CONFIG environment is set up in the docker-compose.yml file while the VOLTTRON_ROOT variable is set in the base VOLTTRON container.  To see the other environmental variables available from the VOLTTRON container consult the Dockerfile https://github.com/VOLTTRON/volttron-docker/blob/master/Dockerfile.  (they stare with ENV)
+
+
+```` yaml
+...
 
 # Agents dictionary to install.  The key must be a valid
 # identity for the agent to be installed correctly.
