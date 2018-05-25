@@ -1,0 +1,14 @@
+version: '3'
+services:
+  volttron:
+    image: volttron/volttron
+    ports:
+      - 22916:22916
+    volumes:
+      - ./platform_config.yml:/platform_config.yml
+      - ./configs:/home/volttron/configs
+      - ./vhome:/home/volttron/.volttron
+    environment:
+      - CONFIG=/home/volttron/configs
+      - LOCAL_USER_ID=1000
+
