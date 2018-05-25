@@ -16,22 +16,22 @@ agents:
   # directory and will be used to install the agent.
   listener:
     source: $VOLTTRON_ROOT/examples/ListenerAgent
-    config: listener.config
+    config: $CONFIG/listener.config
 
   platform.actuator:
     source: $VOLTTRON_ROOT/services/core/ActuatorAgent
 
   historian:
     source: $VOLTTRON_ROOT/services/core/SQLHistorian
-    config: historian.config
+    config: $CONFIG/historian.config
 
   weather:
     source: $VOLTTRON_ROOT/examples/DataPublisher
-    config: weather.config
+    config: $CONFIG/weather.config
 
   price:
     source: $VOLTTRON_ROOT/examples/DataPublisher
-    config: price.config
+    config: $CONFIG/price.config
 
   platform.driver:
     source: $VOLTTRON_ROOT/services/core/MasterDriverAgent
