@@ -10,5 +10,5 @@ services:
       - ./vhome:/home/volttron/.volttron
     environment:
       - CONFIG=/home/volttron/configs
-      - LOCAL_USER_ID=1000
+      #- LOCAL_USER_ID=1000
 
