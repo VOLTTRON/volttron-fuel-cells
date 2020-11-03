@@ -2,8 +2,10 @@ version: '3'
 services:
   volttron:
     image: volttron/volttron:develop
+    # Docker recommends explicity specifying port mappings as strings
+    # https://docs.docker.com/compose/compose-file/#ports
     ports:
-      - 22916:22916
+      - "22916:22916"
     volumes:
       - ./platform_config.yml:/platform_config.yml
       - ./configs:/home/volttron/configs
