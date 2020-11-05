@@ -24,6 +24,21 @@ docker-compose up
 
 #### Secure Mode
 
+When starting the Volttron platform in secure mode, Docker needs to have access 
+to 'volttron_user_secure'. Ensure that ownership is set to root. Execute the following commands:
+
+```
+# check for ownership 
+$ ls -l volttron_user_secure
+
+# change ownership to root
+$ sudo chown -R root:root volttron_user_secure
+
+# verify that ownership has changed
+$ ls -l volttron_user_secure
+```
+
+Once 'volttron_user_secure' has ownership set to root, execute the following command:
 ```
 docker-compose -f docker-compose-secure.yml up
 ```
