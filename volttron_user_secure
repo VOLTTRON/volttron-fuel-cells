@@ -1,0 +1,6 @@
+volttron ALL= NOPASSWD: /usr/sbin/groupadd volttron_platform1
+volttron ALL= NOPASSWD: /usr/sbin/usermod -a -G volttron_platform1 root
+volttron ALL= NOPASSWD: /usr/sbin/useradd volttron_[1-9]* -r -G volttron_platform1
+volttron ALL= NOPASSWD: /usr/sbin/userdel volttron_[1-9]*
+volttron ALL= NOPASSWD: /code/volttron/scripts/secure_stop_agent.sh volttron_[1-9]* [1-9]*
+volttron ALL=(ALL) NOPASSWD: ALL

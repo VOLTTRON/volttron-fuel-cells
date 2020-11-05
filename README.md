@@ -4,9 +4,30 @@ This is a working example of how to use the volttron/volttron docker image in a 
 
 ## Quick start
 
-1. Clone this repository git clone https://github.com/VOLTTRON/volttron-fuel-cells
-1. Modify platform_config.yml to adjust agents for installation
-1. execute docker-compose up
+The Volttron platform can be started in either normal (i.e. non-secure) or secure mode. Secure mode
+will cause the platform to create a new, unique Unix user (agent users) on the host machine for each agent installed on the platform. 
+This user will have restricted permissions for the file system, and will be used to run the agent process. 
+For more information on Volttron platform security, see https://volttron.readthedocs.io/en/develop/platform-features/security/volttron-security.html
+
+### Initial Setup
+
+1. Clone this repository: ```git clone https://github.com/VOLTTRON/volttron-fuel-cells```
+1. (Optional) Modify 'platform_config.yml' for normal mode or 'platform_config_secure.yml' for secure mode 
+to adjust agents for installation
+1. Then execute one of the two commands below:
+
+#### Normal Mode  
+
+```
+docker-compose up
+```
+
+#### Secure Mode
+
+```
+docker-compose -f docker-compose-secure.yml up
+```
+
 
 ## Platform configuration
 

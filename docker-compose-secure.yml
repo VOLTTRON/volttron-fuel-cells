@@ -1,0 +1,19 @@
+version: '3'
+services:
+  volttron:
+    # The image below is a working, temporary image and will be replaced by an official image later down the road
+    image: bonicim/volttron_secure:0.1-buster
+    # Docker recommends explicity specifying port mappings as strings
+    # https://docs.docker.com/compose/compose-file/#ports
+    ports:
+      - "22916:22916"
+    volumes:
+      - ./platform_config_secure.yml:/platform_config.yml
+      - ./configs:/home/volttron/configs
+      - ./volttron_user_secure:/etc/sudoers.d/volttron_user_secure
+#      if you want to create your own 'vhome', create a 'vhome' directory in the root of this repo, add your files to the directory, and then uncomment the line below
+#      - ./vhome:/home/volttron/.volttron
+    environment:
+      - CONFIG=/home/volttron/configs
+      - LOCAL_USER_ID=1000
+
