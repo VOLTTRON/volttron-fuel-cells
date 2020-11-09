@@ -1,14 +1,17 @@
 version: '3'
 services:
   volttron:
-    image: volttron/volttron
+    image: volttron/volttron:develop
+    # Docker recommends explicity specifying port mappings as strings
+    # https://docs.docker.com/compose/compose-file/#ports
     ports:
-      - 22916:22916
+      - "22916:22916"
     volumes:
       - ./platform_config.yml:/platform_config.yml
       - ./configs:/home/volttron/configs
-      - ./vhome:/home/volttron/.volttron
+#      if you want to create your own 'vhome', create a 'vhome' directory in the root of this repo, add your files to the directory, and then uncomment the line below
+#      - ./vhome:/home/volttron/.volttron
     environment:
       - CONFIG=/home/volttron/configs
-      #- LOCAL_USER_ID=1000
+      - LOCAL_USER_ID=1000
 
